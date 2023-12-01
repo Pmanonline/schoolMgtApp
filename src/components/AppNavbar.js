@@ -6,6 +6,7 @@ function AppNavbar() {
     <header className="appNavbar">
       <Link to="/">
         <h1>Class Management App</h1>
+        <h1>Class Management App</h1>
       </Link>
     </header>
   );
