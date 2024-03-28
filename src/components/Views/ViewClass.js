@@ -129,22 +129,10 @@ export function Modal() {
   const history = useHistory();
   const dispatch = useDispatch();
   let { slug: s_slug } = useParams();
-
+  const onDelete = (uid) => dispatch(deleteClass(uid));
   const { students } = useSelector((state) => state.stu);
   const { classes, deleted } = useSelector((state) => state.cla);
   const classDetail = classes.filter(({ slug }) => slug == s_slug)[0];
-
-  const numOfStudents = students.filter(
-    ({ student_class }) => student_class == classDetail.class_name
-  );
-
-  const onDelete = (customId) => dispatch(deleteClass(customId));
-
-  useEffect(() => {
-    if (deleted) {
-      window.location.href = "/classes";
-    }
-  }, [deleted]);
 
   return (
     <>
@@ -218,11 +206,18 @@ export function Modal() {
                   </div>
                 </div>
                 <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse mod:text-center ">
-                  <button onClick={() => onDelete(classDetail.customId)}>
+                  {/* <button onClick={() => onDelete(classDetail.customId)}>
                     <a className="w-full px-6 py-2 mt-3 text-cente text-white bg-indigo-900 rounded-md lg:ml-5  ">
                       Delete Class
                     </a>
+                  </button> */}
+                  <button
+                    onClick={() => onDelete(classDetail.customId)}
+                    className="w-full px-6 py-2 mt-3 text-center text-white bg-indigo-900 rounded-md lg:ml-5"
+                  >
+                    Delete Class
                   </button>
+
                   <button
                     onClick={() => setShowModal(false)}
                     type="button"
